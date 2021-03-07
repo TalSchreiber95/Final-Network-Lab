@@ -113,7 +113,7 @@ int main() {
     char error[PCAP_ERRBUF_SIZE];
     bpf_u_int32 net;
     struct bpf_program fp;
-//    char filter_exp [] = "icmp and src host 10.0.2.4 and dst host 10.0.9.1";
+    char filter_exp [] = "icmp and src host 10.0.2.4";
 
 
     // Step 1: Open live pcap session on the device: "enp0s3"
@@ -122,8 +122,8 @@ int main() {
         return -1;
     }
     // Step 2: Compile and set the filter for sniffing
-    // if (pcap_compile(handle, &fp, filter_exp, 0, net) == -1) printf("failed compiling filter");
-    // if (pcap_setfilter(handle, &fp) == -1) printf("failed setting filter");
+       if (pcap_compile(handle, &fp, filter_exp, 0, net) == -1) printf("failed compiling filter");
+       if (pcap_setfilter(handle, &fp) == -1) printf("failed setting filter");
 
 
     // Step 3: Capture packets

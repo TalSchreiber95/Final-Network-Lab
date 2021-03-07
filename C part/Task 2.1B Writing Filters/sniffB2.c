@@ -63,11 +63,14 @@ int main() {
 
 
     // Step 1: Open live pcap session on the device: "enp0s3"
-    handle = pcap_open_live("enp0s3", BUFSIZ, 1, 1000, error);
-
-    // Step 2: Compile the filter and set it
+    handle = pcap_open_live("enp0s3" , BUFSIZ , 1 , 1000 , error);
+    if (handle == NULL){ fprintf(stderr, "Couldn't open device %s : %s\n" , "enp0s3" , error);
+        return -1;
+    }
+    // Step 2: Compile and set the filter for sniffing
     if (pcap_compile(handle, &fp, filter_exp, 0, net) == -1) printf("failed compiling filter");
-    pcap_setfilter(handle, &fp);
+    if (pcap_setfilter(handle, &fp) == -1) printf("failed setting filter");
+
 
     // Step 3: Capture packets
     pcap_loop(handle, -1, got_packet, NULL);

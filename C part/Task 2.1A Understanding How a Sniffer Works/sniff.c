@@ -27,10 +27,20 @@ struct ipheader
     struct in_addr iph_destip;       // Destination IP address
 };
 
+// ICMP Header
+struct icmpheader
+{
+    unsigned char icmp_type;		// ICMP message type
+    unsigned char icmp_code;		// Error code
+    unsigned short int icmp_chksum; // Checksum for ICMP Header and data
+    unsigned short int icmp_id;		// Used for identifying request
+    unsigned short int icmp_seq;	// Sequence number
+};
+
 void got_packet(u_char *args, const struct pcap_pkthdr *header, const u_char *packet) {
     struct ethheader *eth = (struct ethheader *)packet;
 
-    if (ntohs(eth->ether_type) == 0x0800) { // IP type is 
+    if (ntohs(eth->ether_type) == 0x0800) { // IP type is 0x0800
         struct ipheader *ip = (struct ipheader *)(packet + sizeof(struct ethheader));
 
         printf("Pkt Source: %s\n", inet_ntoa(ip->iph_sourceip));
@@ -62,8 +72,10 @@ int main() {
 
 
     // Step 1: Open live pcap session on the device: "enp0s3"
-    handle = pcap_open_live("enp0s3", BUFSIZ, 1, 1000, error);
-
+    handle = pcap_open_live("enp0s3" , BUFSIZ , 1 , 1000 , error);
+    if (handle == NULL){ fprintf(stderr, "Couldn't open device %s : %s\n" , "enp0s3" , error);
+        return -1;
+    }
 
     // Step 2: Capture packets
     pcap_loop(handle, -1, got_packet, NULL);

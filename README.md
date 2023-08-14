@@ -43,6 +43,6 @@ This project is open to contributions and improvements from the community. If yo
 Please note that this project is intended for educational purposes only. The tools and techniques demonstrated should be used responsibly and ethically. Unauthorized use of these techniques can lead to legal consequences.
 
 ## Conclusion
-By completing the** Final-Network-Lab** project, you will not only have a solid grasp of packet sniffing and spoofing concepts but also gain practical experience in using tools and implementing programs related to these concepts. This knowledge is invaluable for anyone interested in network security, whether from an offensive or defensive standpoint. Happy learning!
+By completing the **Final-Network-Lab** project, you will not only have a solid grasp of packet sniffing and spoofing concepts but also gain practical experience in using tools and implementing programs related to these concepts. This knowledge is invaluable for anyone interested in network security, whether from an offensive or defensive standpoint. Happy learning!
 
 **Disclaimer:** This README is a collaborative effort. If you have suggestions for further improvement, feel free to enhance it.
